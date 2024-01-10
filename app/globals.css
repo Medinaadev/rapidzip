@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+header {
+    animation: scroll 1s ease-in-out;
+    animation-timeline: scroll(block root);
+    animation-range: 200px;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
