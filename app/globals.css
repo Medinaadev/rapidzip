@@ -3,16 +3,19 @@
 @tailwind utilities;
 
 header {
-    animation: scroll 1s ease-in-out;
+    animation: scroll both;
     animation-timeline: scroll();
-    animation-range: 100px;
+    animation-range: 5px;
 }
 
 @keyframes scroll {
     0% {
-        opacity: 1;
+        background-color: transparent;
+        border-bottom: 1px solid transparent;
     }
     100% {
-        opacity: 0;
+        background-color: #030712a4;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #ffffff1a;
     }
 }

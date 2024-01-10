@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import RocketIcon from "@/components/icons/rocket";
 import { createLink } from "@/lib/createLink";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useCreatedLinkModal } from "@/components/modals/createdLink";
 
@@ -120,12 +120,6 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
                 >
                     Custom alias (optional)
                 </label>
-                <p
-                    className="hidden max-sm:block text-white/60 text-sm mt-1"
-                    suppressHydrationWarning
-                >
-                    rapidzip.vercel.app/link/{alias || defaultAlias}
-                </p>
                 <div className="flex items-end gap-x-4 -mt-1">
                     <div className="flex items-center gap-x-1 text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1">
                         <span className="max-sm:hidden text-white/60">
