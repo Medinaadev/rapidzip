@@ -6,14 +6,17 @@ import { nanoid } from "nanoid";
 import RocketIcon from "@/components/icons/rocket";
 import { createLink } from "@/lib/createLink";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useCreatedLinkModal } from "@/components/modals/createdLink";
 
 type FormValues = {
-    link: string;
+    url: string;
     alias: string;
     description: string;
 };
 
-const CreateLinkForm = () => {
+const CreateLinkForm = ({ userId }: { userId: string }) => {
+    const [loading, setLoading] = useState(false);
     const [defaultAlias, setDefaultAlias] = useState(nanoid(6));
     const [alias, setAlias] = useState(defaultAlias);
     const {
@@ -23,9 +26,46 @@ const CreateLinkForm = () => {
         setError,
         formState: { errors },
     } = useForm<FormValues>();
+    const { open } = useCreatedLinkModal();
 
-    const onSubmit = (data: FormValues) => {
-        console.log(data);
+    const onSubmit = async (data: FormValues) => {
+        setLoading(true);
+
+        toast.promise(
+            createLink({
+                userId,
+                url: data.url,
+                alias: data.alias,
+                description: data.description,
+            }),
+            {
+                loading: "Creating link...",
+                success: (data) => {
+                    setLoading(false);
+                    setValue("url", "");
+                    setValue("alias", "");
+                    setValue("description", "");
+                    regenerate();
+                    open(window.location.origin + "/link/" + data.alias);
+                    return "Link created!";
+                },
+                error: (err) => {
+                    setError("alias", {
+                        type: "manual",
+                        message: err.message,
+                    });
+                    setLoading(false);
+                    return err.message;
+                },
+            }
+        );
+    };
+
+    const regenerate = () => {
+        const newAlias = nanoid(6);
+        setDefaultAlias(newAlias);
+        setAlias(newAlias);
+        setValue("alias", newAlias);
     };
 
     return (
@@ -42,33 +82,49 @@ const CreateLinkForm = () => {
                         type="text"
                         id="link"
                         placeholder="https://..."
+                        disabled={loading}
                         className="text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1 focus:outline-none focus:border-white/20"
-                        {...register("link", {
+                        {...register("url", {
                             required: {
                                 value: true,
                                 message: "Please enter a link",
                             },
+                            minLength: {
+                                value: 8,
+                                message:
+                                    "Please enter a valid link, e.g. https://google.com",
+                            },
+                            pattern: {
+                                value: /^https:\/\/.*/i,
+                                message:
+                                    "Please enter a valid link, e.g. https://google.com",
+                            },
                         })}
-                        // {
-                        //     errors.link && (
-                        //         <span className="text-red-500 text-sm">
-                        //             {errors.link.message}
-                        //         </span>
-                        //     )
-                        // }
+                        {...(errors.url && {
+                            className:
+                                "text-sm w-full bg-gray-800/50 border-[1px] border-red-500/50 rounded-md px-3 py-2 mt-1 focus:outline-none",
+                        })}
                     />
+                    {errors.url && (
+                        <p className="text-xs text-red-400 mt-1">
+                            {errors.url.message}
+                        </p>
+                    )}
                 </div>
             </Up>
 
             <Up delay={0.4} className="mt-4">
                 <label
-                    htmlFor="link"
+                    htmlFor="alias"
                     className="text-white/60 text-sm font-semibold"
                 >
                     Custom alias (optional)
                 </label>
-                <p className="hidden max-sm:block text-white/60 text-sm mt-1">
-                    rapidzip.vercel.app/link/{alias}
+                <p
+                    className="hidden max-sm:block text-white/60 text-sm mt-1"
+                    suppressHydrationWarning
+                >
+                    rapidzip.vercel.app/link/{alias || defaultAlias}
                 </p>
                 <div className="flex items-end gap-x-4 -mt-1">
                     <div className="flex items-center gap-x-1 text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1">
@@ -76,48 +132,65 @@ const CreateLinkForm = () => {
                             rapidzip.vercel.app/link/
                         </span>
                         <input
+                            suppressHydrationWarning
                             type="text"
-                            id="link"
+                            id="alias"
                             placeholder={defaultAlias}
                             maxLength={6}
                             value={alias}
+                            disabled={loading}
                             className="w-full bg-transparent focus:outline-none"
-                            onChange={(e) => {
-                                setAlias(e.target.value);
-                            }}
+                            {...register("alias", {
+                                onChange: (e) => {
+                                    setAlias(e.target.value);
+                                },
+                                required: {
+                                    value: true,
+                                    message: "Please enter an alias",
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9_-]*$/i,
+                                    message:
+                                        "Please enter a valid alias without special characters",
+                                },
+                            })}
+                            {...(errors.alias && {
+                                className:
+                                    "w-full bg-transparent focus:outline-none",
+                            })}
                         />
                     </div>
-                    <Button
-                        onClick={() => {
-                            const newAlias = nanoid(6);
-                            setDefaultAlias(newAlias);
-                            setAlias(newAlias);
-                        }}
-                    >
+                    <Button disabled={loading} onClick={() => regenerate()}>
                         Regenerate
                     </Button>
                 </div>
+                {errors.alias && (
+                    <p className="text-xs text-red-400 mt-1">
+                        {errors.alias.message}
+                    </p>
+                )}
             </Up>
 
             <Up delay={0.5} className="mt-4">
-                {/* description */}
                 <label
-                    htmlFor="link"
+                    htmlFor="description"
                     className="text-white/60 text-sm font-semibold"
                 >
                     Description (optional)
                 </label>
 
                 <textarea
-                    id="link"
+                    id="description"
                     placeholder="Enter a description for your link"
                     rows={2}
+                    disabled={loading}
                     className="text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1 focus:outline-none focus:border-white/20"
+                    {...register("description")}
                 />
             </Up>
 
             <Up delay={0.6} className="mt-4">
-                <Button>
+                <Button type="submit" disabled={loading}>
                     <RocketIcon className="w-4 h-4" />
                     Shorten Link
                 </Button>

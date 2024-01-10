@@ -11,15 +11,16 @@ datasource db {
 }
 
 model Link {
-  id          String   @id @default(cuid())
-  url         String   @db.Text
-  shortUrl    String   @unique
+  id          Int       @id @default(autoincrement())
+  url         String    @db.Text
+  alias       String    @unique
   description String?
-  createdAt   DateTime @default(now())
-  postedBy    User?    @relation(fields: [postedById], references: [id])
+  createdAt   DateTime  @default(now())
+  lastUsed    DateTime?
+  postedBy    User?     @relation(fields: [postedById], references: [id])
   postedById  String?
 
-  @@index(shortUrl)
+  @@index(alias)
 }
 
 model Account {
