@@ -68,7 +68,7 @@ const CreateLinkForm = () => {
                     Custom alias (optional)
                 </label>
                 <p className="hidden max-sm:block text-white/60 text-sm mt-1">
-                    rapidzip.vercel.app/link/...
+                    rapidzip.vercel.app/link/{defaultAlias}
                 </p>
                 <div className="flex items-end gap-x-4 -mt-1">
                     <div className="flex items-center gap-x-1 text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1">
