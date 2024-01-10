@@ -13,7 +13,7 @@ type FormValues = {
     description: string;
 };
 
-const createLinkForm = () => {
+const CreateLinkForm = () => {
     const [defaultAlias, setDefaultAlias] = useState(nanoid(6));
     const [alias, setAlias] = useState(defaultAlias);
     const {
@@ -126,4 +126,4 @@ const createLinkForm = () => {
     );
 };
 
-export default createLinkForm;
+export default CreateLinkForm;
