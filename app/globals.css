@@ -4,8 +4,8 @@
 
 header {
     animation: scroll 1s ease-in-out;
-    animation-timeline: scroll(block nearest);
-    animation-range: 200px;
+    animation-timeline: scroll();
+    animation-range: 100px;
 }
 
 @keyframes scroll {
