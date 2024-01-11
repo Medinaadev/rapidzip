@@ -16,6 +16,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
-        '/link/:alias*',
+        '/q/:alias*',
     ]
 };
