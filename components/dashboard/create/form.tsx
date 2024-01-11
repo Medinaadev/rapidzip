@@ -17,7 +17,7 @@ type FormValues = {
 
 const CreateLinkForm = ({ userId }: { userId: string }) => {
     const [loading, setLoading] = useState(false);
-    const [defaultAlias, setDefaultAlias] = useState(nanoid(6));
+    const [defaultAlias, setDefaultAlias] = useState(nanoid(8));
     const [alias, setAlias] = useState(defaultAlias);
     const {
         handleSubmit,
@@ -73,7 +73,7 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
     };
 
     const regenerate = () => {
-        const newAlias = nanoid(6);
+        const newAlias = nanoid(8);
         setDefaultAlias(newAlias);
         setAlias(newAlias);
         setValue("alias", newAlias);
@@ -141,7 +141,7 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
                             type="text"
                             id="alias"
                             placeholder={defaultAlias}
-                            maxLength={6}
+                            maxLength={8}
                             value={alias}
                             disabled={loading}
                             className="w-full bg-transparent focus:outline-none"
