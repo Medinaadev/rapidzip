@@ -19,13 +19,13 @@ export default function Home() {
                 </h1>
             </Up>
 
-            <Up delay={0.3}>
+            <Up delay={0.15}>
                 <h2 className="text-md max-md:max-w-[300px] md:text-xl mt-4 text-gray-400 text-center text-balance">
                     Swift Link Shortening, Effortless Sharing.
                 </h2>
             </Up>
 
-            <Up delay={0.5}>
+            <Up delay={0.3}>
                 <div className="flex max-sm:flex-col justify-between items-center mt-8 w-72">
                     <Button href={session ? "/dashboard" : "/auth"}>
                         <RocketIcon className="w-4 h-4" />

@@ -28,14 +28,16 @@ const Header = () => {
                     <div className="w-6 h-6 rounded-full bg-gray-800 animate-pulse" />
                 ) : session ? (
                     <ProfileDropdown>
-                        <div className="flex items-center gap-x-2 cursor-pointer mr-4">
+                        <div className="flex items-center justify-start gap-x-2 cursor-pointer">
                             <Image
                                 src={session?.user?.image as string}
                                 alt={session?.user?.name as string}
                                 className="w-6 h-6 rounded-full"
                                 isBlurred
                             />
-                            {session?.user?.name}
+                            <span className="hidden sm:block text-gray-300 text-sm">
+                                {session?.user?.name}
+                            </span>
                         </div>
                     </ProfileDropdown>
                 ) : (

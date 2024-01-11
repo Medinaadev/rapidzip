@@ -19,7 +19,8 @@ const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
     return (
         <Dropdown
             classNames={{
-                content: "bg-gray-950/95 border-[1px] border-white/10",
+                content:
+                    "bg-gray-950/70 backdrop-blur-sm border-[1px] border-white/10",
             }}
             aria-label="Profile dropdown"
         >

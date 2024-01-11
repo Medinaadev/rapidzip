@@ -10,10 +10,10 @@ type Props = {
 
 const Image = ({ src, alt, isBlurred, className }: Props) => {
     return (
-        <div className="relative z-10 w-full h-full">
+        <div className="relative z-10 min-w-fit">
             <img src={src} alt={alt} className={className} />
             {isBlurred && (
-                <div className="absolute -z-10 inset-0 w-full h-full blur-xl">
+                <div className="absolute -z-10 inset-0 blur-xl">
                     <img
                         src={src}
                         alt={alt}

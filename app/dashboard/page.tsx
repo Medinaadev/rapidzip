@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import Up from "@/components/motions/Up";
 import Button from "@/components/ui/button";
 import LinkIcon from "@/components/icons/link";
+import Links from "@/components/dashboard/links";
 
 const DashPage = async () => {
     const session = await getServerSession(authOptions);
@@ -15,8 +16,8 @@ const DashPage = async () => {
     return (
         <main className="flex mx-4 md:mx-32 lg:mx-64 flex-col mt-5">
             <Up className="flex justify-between items-end">
-                <h1 className="text-xl font-semibold max-sm:text-center">
-                    Dashboard
+                <h1 className="text-lg font-semibold truncate">
+                    Welcome {session.user.name}
                 </h1>
 
                 <Button href="/dashboard/create">
@@ -28,6 +29,8 @@ const DashPage = async () => {
             <Up delay={0.3}>
                 <hr className="my-2 border-gray-500/60" />
             </Up>
+
+            <Links />
         </main>
     );
 };
