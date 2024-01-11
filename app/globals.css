@@ -17,5 +17,6 @@ header {
         background-color: #030712a4;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid #ffffff1a;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     }
 }

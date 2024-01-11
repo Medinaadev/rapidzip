@@ -5,6 +5,7 @@ import ClipboardIcon from "@/components/icons/clipboard";
 import ClipboardCheckIcon from "@/components/icons/clipboardCheck";
 import SignoutIcon from "@/components/icons/signout";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const context = createContext({
     isOpen: false,
@@ -21,7 +22,7 @@ export const CreatedLinkModalProvider = ({
     children: React.ReactNode;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [link, setLink] = useState("");
+    const [link, setLink] = useState("https://rapidzip.vercel.app/");
 
     const open = (link: string) => {
         setIsOpen(true);
@@ -46,6 +47,7 @@ export const CreatedLinkModal = () => {
     const copy = () => {
         navigator.clipboard.writeText(link);
         setIsCopied(true);
+        toast.success("Copied to clipboard!");
         setTimeout(() => {
             setIsCopied(false);
         }, 2000);
@@ -59,14 +61,14 @@ export const CreatedLinkModal = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3 }}
                 >
                     <motion.div
                         className="bg-gray-900/80 md:border-[1px] md:border-white/10 shadow-lg sm:rounded-lg p-4 w-full sm:max-w-md"
                         initial={{ y: 20, scale: 0.8 }}
                         animate={{ y: 0, scale: 1 }}
                         exit={{ y: 20, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
+                        transition={{ duration: 0.3 }}
                     >
                         <h1 className="text-white text-lg font-semibold">
                             Link created!
@@ -78,26 +80,12 @@ export const CreatedLinkModal = () => {
                             <span className="truncate">{link}</span>
                             <button
                                 className="text-white/60 text-sm ml-2 bg-gray-800/25 p-2 rounded-md hover:bg-gray-700/50 transition duration-300"
-                                onClick={() => copy}
+                                onClick={copy}
                             >
                                 {!isCopied ? (
-                                    <motion.div
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        exit={{ scale: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <ClipboardIcon className="w-3 h-3" />
-                                    </motion.div>
+                                    <ClipboardIcon className="w-3 h-3" />
                                 ) : (
-                                    <motion.div
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        exit={{ scale: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <ClipboardCheckIcon className="w-3 h-3" />
-                                    </motion.div>
+                                    <ClipboardCheckIcon className="w-3 h-3" />
                                 )}
                             </button>
                         </p>

@@ -1,12 +1,21 @@
-import { withAuth } from "next-auth/middleware"
+import { NextRequest, NextResponse } from "next/server";
 
-export default withAuth({
-    pages: {
-        signIn: "/auth",
-        signOut: "/",
+export async function middleware(req: NextRequest) {
+    const alias = req.nextUrl.pathname.split("/").pop();
+
+    const data = await fetch(`${req.nextUrl.origin}/api/link/${alias}`);
+
+    if (data.status === 404) {
+        return NextResponse.redirect(req.nextUrl.origin);
     }
-})
+
+    const link = await data.json();
+
+    return NextResponse.redirect(link.url);
+}
 
 export const config = {
-    matcher: [],
+    matcher: [
+        '/link/:alias*',
+    ]
 };

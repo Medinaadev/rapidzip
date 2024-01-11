@@ -4,13 +4,14 @@ import {
     DropdownMenu,
     DropdownSection,
     DropdownItem,
-    LinkIcon,
+    LinkIcon as NextUILinkIcon,
 } from "@nextui-org/react";
 import SignoutIcon from "../icons/signout";
 import DashboardIcon from "../icons/dashboard";
-import WarnIcon from "../icons/warn";
+import WarnIcon from "@/components/icons/warn";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import LinkIcon from "@/components/icons/link";
 
 const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
@@ -18,8 +19,9 @@ const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
     return (
         <Dropdown
             classNames={{
-                content: "bg-gray-950/70 border-[1px] border-white/10",
+                content: "bg-gray-950/95 border-[1px] border-white/10",
             }}
+            aria-label="Profile dropdown"
         >
             <DropdownTrigger>{children}</DropdownTrigger>
             <DropdownMenu
@@ -29,15 +31,28 @@ const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
                         "data-[hover=true]:bg-gray-800/50 data-[hover=true]:border-white/10",
                     ],
                 }}
+                aria-label="Profile dropdown menu"
             >
                 <DropdownItem
                     onPress={() => {
                         router.push("/dashboard");
                     }}
+                    aria-label="Go to Dashboard"
                 >
                     <div className="flex items-center gap-x-2">
                         <DashboardIcon className="w-4 h-4" />
                         Dashboard
+                    </div>
+                </DropdownItem>
+                <DropdownItem
+                    onPress={() => {
+                        router.push("/dashboard/create");
+                    }}
+                    aria-label="Create link"
+                >
+                    <div className="flex items-center gap-x-2">
+                        <LinkIcon className="w-4 h-4" />
+                        Create link
                     </div>
                 </DropdownItem>
                 <DropdownItem
@@ -47,12 +62,13 @@ const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
                             "_blank"
                         );
                     }}
+                    aria-label="Report a bug"
                 >
                     <div className="flex items-center gap-x-2">
                         <WarnIcon className="w-4 h-4" />
                         Report a bug
                         <div className="text-white/50 -ml-2">
-                            <LinkIcon />
+                            <NextUILinkIcon />
                         </div>
                     </div>
                 </DropdownItem>
@@ -62,6 +78,7 @@ const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {
                             callbackUrl: "/",
                         });
                     }}
+                    aria-label="Sign out"
                 >
                     <div className="flex items-center gap-x-2 text-red-500">
                         <SignoutIcon className="w-4 h-4" />
