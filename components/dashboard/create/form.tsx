@@ -134,7 +134,7 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
                 <div className="flex items-end gap-x-4 -mt-1">
                     <div className="flex items-center gap-x-1 text-sm w-full bg-gray-800/50 border-[1px] border-white/10 rounded-md px-3 py-2 mt-1">
                         <span className="max-sm:hidden text-white/60">
-                            rapidzip.vercel.app/link/
+                            rapidzip.xyz/q/
                         </span>
                         <input
                             suppressHydrationWarning

@@ -3,6 +3,7 @@ import { Onest } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/index";
 import Providers from "@/components/providers/index";
+import Head from "next/head";
 
 const onest = Onest({
     subsets: ["latin"],

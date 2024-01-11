@@ -22,7 +22,7 @@ export const CreatedLinkModalProvider = ({
     children: React.ReactNode;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [link, setLink] = useState("https://rapidzip.vercel.app/");
+    const [link, setLink] = useState("https://rapizip.xyz/");
 
     const open = (link: string) => {
         setIsOpen(true);
