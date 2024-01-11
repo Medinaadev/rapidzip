@@ -58,7 +58,7 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
                 setValue("alias", "");
                 setValue("description", "");
                 regenerate();
-                open(window.location.origin + "/link/" + data.alias);
+                open(window.location.origin + "/q/" + data.alias);
                 return "Link created!";
             },
             error: (err) => {

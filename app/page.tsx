@@ -5,11 +5,9 @@ import Link from "next/link";
 import Up from "@/components/motions/Up";
 import { useSession } from "next-auth/react";
 import Button from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
     const { data: session } = useSession();
-    const router = useRouter();
 
     return (
         <main className="flex md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
