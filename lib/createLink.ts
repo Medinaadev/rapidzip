@@ -1,4 +1,5 @@
 'use server';
+import { NextResponse } from "next/server";
 import prisma from "./db";
 
 type CreateLinkType = {
@@ -14,24 +15,28 @@ export const createLink = async ({
     alias,
     description,
 }: CreateLinkType) => {
-    const existingLink = await prisma.link.findUnique({
-        where: {
-            alias,
-        },
-    });
-
-    if (existingLink) {
-        throw new Error(`Alias ${alias} already exists`);
+    try {
+        const existingLink = await prisma.link.findUnique({
+            where: {
+                alias,
+            },
+        });
+    
+        if (existingLink) {
+            return 'Alias already exists';
+        }
+    
+        const link = await prisma.link.create({
+            data: {
+                url,
+                alias,
+                description: description || null,
+                postedById: userId,
+            },
+        });
+    
+        return link;
+    } catch (error: any) {
+        throw new Error(error.message);
     }
-
-    const link = await prisma.link.create({
-        data: {
-            url,
-            alias,
-            description: description || null,
-            postedById: userId,
-        },
-    });
-
-    return link;
 };

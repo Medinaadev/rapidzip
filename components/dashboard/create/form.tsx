@@ -31,34 +31,45 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
     const onSubmit = async (data: FormValues) => {
         setLoading(true);
 
-        toast.promise(
+        const promise = new Promise((resolve, reject) => {
             createLink({
+                ...data,
                 userId,
-                url: data.url,
-                alias: data.alias,
-                description: data.description,
-            }),
-            {
-                loading: "Creating link...",
-                success: (data) => {
-                    setLoading(false);
-                    setValue("url", "");
-                    setValue("alias", "");
-                    setValue("description", "");
-                    regenerate();
-                    open(window.location.origin + "/link/" + data.alias);
-                    return "Link created!";
-                },
-                error: (err) => {
-                    setError("alias", {
-                        type: "manual",
-                        message: err.message,
-                    });
-                    setLoading(false);
-                    return err.message;
-                },
-            }
-        );
+            })
+                .then((res) => {
+                    if (res instanceof Error) {
+                        reject(res);
+                    } else if (typeof res === "string") {
+                        reject(new Error(res));
+                    }
+
+                    resolve(res);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+
+        toast.promise(promise, {
+            loading: "Creating link...",
+            success: (data: any) => {
+                setLoading(false);
+                setValue("url", "");
+                setValue("alias", "");
+                setValue("description", "");
+                regenerate();
+                open(window.location.origin + "/link/" + data.alias);
+                return "Link created!";
+            },
+            error: (err) => {
+                setError("alias", {
+                    type: "manual",
+                    message: err.message,
+                });
+                setLoading(false);
+                return err.message;
+            },
+        });
     };
 
     const regenerate = () => {
