@@ -32,8 +32,8 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
 
     const onSubmit = async (data: FormValues) => {
         // setLoading(true);
-        const hello = await trpc.greeting.query();
-        console.log(hello.data);
+        // const hello = await trpc.greeting.query();
+        // console.log(hello.data);
         // const promise = new Promise((resolve, reject) => {
         //     trpc.links.createLink
         //         .mutate({
