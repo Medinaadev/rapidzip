@@ -1,13 +1,14 @@
 "use client";
 import Up from "@/components/motions/Up";
 import Button from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import RocketIcon from "@/components/icons/rocket";
 import { createLink } from "@/lib/createLink";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useCreatedLinkModal } from "@/components/modals/createdLink";
+import { trpc } from "@/lib/trpc";
 
 type FormValues = {
     url: string;
@@ -16,6 +17,7 @@ type FormValues = {
 };
 
 const CreateLinkForm = ({ userId }: { userId: string }) => {
+    // const mutation = trpc.links.createLink.useMutation();
     const [loading, setLoading] = useState(false);
     const [defaultAlias, setDefaultAlias] = useState(nanoid(8));
     const [alias, setAlias] = useState(defaultAlias);
@@ -29,47 +31,56 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
     const { open } = useCreatedLinkModal();
 
     const onSubmit = async (data: FormValues) => {
-        setLoading(true);
-
-        const promise = new Promise((resolve, reject) => {
-            createLink({
-                ...data,
-                userId,
-            })
-                .then((res) => {
-                    if (res instanceof Error) {
-                        reject(res);
-                    } else if (typeof res === "string") {
-                        reject(new Error(res));
-                    }
-
-                    resolve(res);
-                })
-                .catch((err) => {
-                    reject(err);
-                });
-        });
-
-        toast.promise(promise, {
-            loading: "Creating link...",
-            success: (data: any) => {
-                setLoading(false);
-                setValue("url", "");
-                setValue("alias", "");
-                setValue("description", "");
-                regenerate();
-                open(window.location.origin + "/q/" + data.alias);
-                return "Link created!";
-            },
-            error: (err) => {
-                setError("alias", {
-                    type: "manual",
-                    message: err.message,
-                });
-                setLoading(false);
-                return err.message;
-            },
-        });
+        // setLoading(true);
+        const hello = await trpc.greeting.query();
+        console.log(hello.data);
+        // const promise = new Promise((resolve, reject) => {
+        //     trpc.links.createLink
+        //         .mutate({
+        //             ...data,
+        //         })
+        //         .then(() => {
+        //             resolve("success");
+        //         })
+        //         .catch(() => {
+        //             reject();
+        //         });
+        //     // createLink({
+        //     //     ...data,
+        //     //     userId,
+        //     // })
+        //     //     .then((res) => {
+        //     //         if (res instanceof Error) {
+        //     //             reject(res);
+        //     //         } else if (typeof res === "string") {
+        //     //             reject(new Error(res));
+        //     //         }
+        //     //         resolve(res);
+        //     //     })
+        //     //     .catch((err) => {
+        //     //         reject(err);
+        //     //     });
+        // });
+        // toast.promise(promise, {
+        //     loading: "Creating link...",
+        //     success: (data: any) => {
+        //         setLoading(false);
+        //         setValue("url", "");
+        //         setValue("alias", "");
+        //         setValue("description", "");
+        //         regenerate();
+        //         // open(window.location.origin + "/q/" + data.alias);
+        //         return "Link created!";
+        //     },
+        //     error: (err) => {
+        //         setError("alias", {
+        //             type: "manual",
+        //             message: err.message,
+        //         });
+        //         setLoading(false);
+        //         return err.message;
+        //     },
+        // });
     };
 
     const regenerate = () => {

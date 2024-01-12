@@ -13,6 +13,10 @@
     "@auth/prisma-adapter": "^1.0.14",
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.8.0",
+    "@tanstack/react-query": "^4.36.1",
+    "@trpc/client": "^10.45.0",
+    "@trpc/react-query": "^10.45.0",
+    "@trpc/server": "^10.45.0",
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
@@ -20,7 +24,9 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
     "react-hot-toast": "^2.4.1",
-    "tailwind-merge": "^2.2.0"
+    "superjson": "^2.2.1",
+    "tailwind-merge": "^2.2.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

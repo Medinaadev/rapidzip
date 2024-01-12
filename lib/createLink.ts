@@ -1,6 +1,6 @@
 'use server';
 import { NextResponse } from "next/server";
-import prisma from "./db";
+import {prisma} from "./db";
 
 type CreateLinkType = {
     userId: string;
