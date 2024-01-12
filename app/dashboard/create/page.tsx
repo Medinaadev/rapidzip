@@ -12,7 +12,7 @@ import {
 const CreateLinkPage = async () => {
     const session = await getServerSession(authOptions);
 
-    if (!session) {
+    if (!session || !session.user) {
         return redirect("/auth");
     }
 
