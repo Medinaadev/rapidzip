@@ -33,6 +33,7 @@ export default function Home() {
                     <Button
                         href="https://github.com/MedinaYT/rapidzip"
                         target="_blank"
+                        className="max-sm:mt-4"
                     >
                         <StarIcon className="w-4 h-4" />
                         Star on GitHub?

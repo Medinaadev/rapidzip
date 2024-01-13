@@ -11,11 +11,11 @@ const Header = () => {
     const { data: session, status } = useSession();
 
     return (
-        <header className="flex items-center justify-between sticky top-0 px-4 md:px-32 lg:px-64 py-4 transition">
+        <header className="flex items-center justify-between sticky top-0 px-4 md:px-32 lg:px-64 py-4 transition z-20">
             <div className="flex items-center">
                 <Link href="/" className="flex items-center gap-x-4">
                     <div className="p-1.5 bg-gray-800 rounded-xl shadow-md">
-                        <LinkIcon className="w-5 h-5" />
+                        <LinkIcon className="w-4 h-4" />
                     </div>
 
                     <h1 className="text-xl font-semibold hover:text-gray-300 transition">
@@ -58,7 +58,7 @@ const Header = () => {
                 </Link>
 
                 <Link
-                    href="https://github.com/MedinaYT"
+                    href="https://github.com/Medinaadev/rapidzip"
                     target="_blank"
                     className="font-medium hover:text-gray-300 transition"
                 >

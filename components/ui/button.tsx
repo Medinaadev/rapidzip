@@ -1,9 +1,11 @@
 "use client";
+import cn from "@/lib/cn";
 import { useRouter } from "next/navigation";
 
 const Button = ({
     children,
     onClick,
+    className,
     href,
     target,
     type = "button",
@@ -11,6 +13,7 @@ const Button = ({
 }: {
     children: React.ReactNode;
     onClick?: () => void;
+    className?: string;
     href?: string;
     target?: string;
     type?: "button" | "submit" | "reset";
@@ -28,7 +31,10 @@ const Button = ({
 
     return (
         <button
-            className="flex items-center mt-4 gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300"
+            className={cn(
+                "flex items-center gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300",
+                className
+            )}
             onClick={handleClick}
             type={type}
             disabled={disabled}
