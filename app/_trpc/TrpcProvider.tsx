@@ -12,7 +12,6 @@ export default function TrpcProvider({
     children: React.ReactNode;
 }) {
     const [queryClient] = useState(() => new QueryClient({}));
-    console.log(queryClient);
 
     // Define a variable for the API URL
     let apiUrl = "http://localhost:3000";
@@ -21,10 +20,6 @@ export default function TrpcProvider({
     if (typeof window !== "undefined") {
         // Dynamically determine the URL based on the current port
         apiUrl = window.location.origin;
-    }
-
-    if (process.env.VERCEL_URL) {
-        apiUrl = `https://${process.env.VERCEL_URL}`;
     }
 
     const [trpcClient] = useState(() =>

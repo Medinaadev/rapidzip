@@ -1,12 +1,25 @@
-import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { getSession } from "next-auth/react";
+import * as trpc from "@trpc/server";
+import * as trpcNext from "@trpc/server/adapters/next";
+import authOptions from "@/app/api/auth/[...nextauth]/options";
+import { Session, getServerSession } from "next-auth";
 
-export async function createContext(opts: CreateNextContextOptions) {
-    const session = await getSession({ req: opts.req });
+type CreateContextOptions = {
+    session: Session | null;
+};
 
+export const createContextInner = async (opts: CreateContextOptions) => {
     return {
-        session,
+        session: opts.session,
     };
-}
+};
 
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export const createContext = async (
+    opts: trpcNext.CreateNextContextOptions
+) => {
+    const session = await getServerSession(authOptions);
+    return await createContextInner({
+        session,
+    });
+};
+
+export type Context = trpc.inferAsyncReturnType<typeof createContext>;

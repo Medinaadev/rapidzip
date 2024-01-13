@@ -17,23 +17,20 @@ const CreateLinkPage = async () => {
     }
 
     return (
-        <CreatedLinkModalProvider>
-            <CreatedLinkModal />
-            <main className="flex mx-4 md:mx-32 lg:mx-64 flex-col mt-5">
-                <Up>
-                    <h1 className="text-xl font-semibold max-sm:text-center flex items-center gap-x-2">
-                        <LinkIcon className="w-5 h-5" />
-                        Create Link
-                    </h1>
-                </Up>
+        <main className="flex mx-4 md:mx-32 lg:mx-64 flex-col mt-5">
+            <Up>
+                <h1 className="text-xl font-semibold max-sm:text-center flex items-center gap-x-2">
+                    <LinkIcon className="w-5 h-5" />
+                    Create Link
+                </h1>
+            </Up>
 
-                <Up delay={0.2}>
-                    <hr className="my-2 border-gray-500/60" />
-                </Up>
+            <Up delay={0.2}>
+                <hr className="my-2 border-gray-500/60" />
+            </Up>
 
-                <CreateLinkForm userId={session.user.id} />
-            </main>
-        </CreatedLinkModalProvider>
+            <CreateLinkForm />
+        </main>
     );
 };
 

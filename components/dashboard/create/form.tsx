@@ -4,11 +4,10 @@ import Button from "@/components/ui/button";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import RocketIcon from "@/components/icons/rocket";
-import { createLink } from "@/lib/createLink";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useCreatedLinkModal } from "@/components/modals/createdLink";
-import { trpc } from "@/lib/trpc";
+import { trpc } from "@/app/_trpc/client";
 
 type FormValues = {
     url: string;
@@ -16,8 +15,34 @@ type FormValues = {
     description: string;
 };
 
-const CreateLinkForm = ({ userId }: { userId: string }) => {
-    // const mutation = trpc.links.createLink.useMutation();
+const CreateLinkForm = () => {
+    const { open } = useCreatedLinkModal();
+    const [toastId, setToastId] = useState<string | undefined>();
+    const { mutate: createLink } = trpc.links.createLink.useMutation({
+        onSuccess: (data) => {
+            setLoading(false);
+            setValue("url", "");
+            setValue("alias", "");
+            setValue("description", "");
+            regenerate();
+            open(`${window.location.origin}/q/${data.alias}`);
+            toast.success("Link created!", {
+                id: toastId,
+            });
+        },
+        onError: (err) => {
+            const errorMessage = `Alias "${alias}" already exists!`;
+
+            setError("alias", {
+                type: "manual",
+                message: errorMessage,
+            });
+            setLoading(false);
+            toast.error(errorMessage, {
+                id: toastId,
+            });
+        },
+    });
     const [loading, setLoading] = useState(false);
     const [defaultAlias, setDefaultAlias] = useState(nanoid(8));
     const [alias, setAlias] = useState(defaultAlias);
@@ -28,59 +53,13 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
         setError,
         formState: { errors },
     } = useForm<FormValues>();
-    const { open } = useCreatedLinkModal();
 
     const onSubmit = async (data: FormValues) => {
-        // setLoading(true);
-        // const hello = await trpc.greeting.query();
-        // console.log(hello.data);
-        // const promise = new Promise((resolve, reject) => {
-        //     trpc.links.createLink
-        //         .mutate({
-        //             ...data,
-        //         })
-        //         .then(() => {
-        //             resolve("success");
-        //         })
-        //         .catch(() => {
-        //             reject();
-        //         });
-        //     // createLink({
-        //     //     ...data,
-        //     //     userId,
-        //     // })
-        //     //     .then((res) => {
-        //     //         if (res instanceof Error) {
-        //     //             reject(res);
-        //     //         } else if (typeof res === "string") {
-        //     //             reject(new Error(res));
-        //     //         }
-        //     //         resolve(res);
-        //     //     })
-        //     //     .catch((err) => {
-        //     //         reject(err);
-        //     //     });
-        // });
-        // toast.promise(promise, {
-        //     loading: "Creating link...",
-        //     success: (data: any) => {
-        //         setLoading(false);
-        //         setValue("url", "");
-        //         setValue("alias", "");
-        //         setValue("description", "");
-        //         regenerate();
-        //         // open(window.location.origin + "/q/" + data.alias);
-        //         return "Link created!";
-        //     },
-        //     error: (err) => {
-        //         setError("alias", {
-        //             type: "manual",
-        //             message: err.message,
-        //         });
-        //         setLoading(false);
-        //         return err.message;
-        //     },
-        // });
+        setLoading(true);
+        const toastId = toast.loading("Creating link...");
+        setToastId(toastId);
+
+        createLink(data);
     };
 
     const regenerate = () => {
@@ -117,7 +96,8 @@ const CreateLinkForm = ({ userId }: { userId: string }) => {
                                     "Please enter a valid link, e.g. https://google.com",
                             },
                             pattern: {
-                                value: /^https:\/\/.*/i,
+                                // tiene que empezar con https:// aqui tiene que haber algo y luego un punto y luego algo
+                                value: /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
                                 message:
                                     "Please enter a valid link, e.g. https://google.com",
                             },
