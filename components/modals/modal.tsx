@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useCreatedLinkModal } from "./createdLink";
 import { useEditLinkModal } from "./editLink";
 import { useDeleteLinkModal } from "./deleteLink";
@@ -14,11 +14,12 @@ export const Modal = ({
     const { close: createdLinkModalClose } = useCreatedLinkModal();
     const { close: editLinkModalClose } = useEditLinkModal();
     const { close: deleteLinkModalClose } = useDeleteLinkModal();
-    const close = () => {
+
+    const close = useCallback(() => {
         createdLinkModalClose();
         editLinkModalClose();
         deleteLinkModalClose();
-    };
+    }, [createdLinkModalClose, editLinkModalClose, deleteLinkModalClose]);
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -44,7 +45,7 @@ export const Modal = ({
             window.removeEventListener("keydown", handleKeydown);
             window.removeEventListener("mousedown", handleClick);
         };
-    }, []);
+    }, [close]);
 
     return (
         <AnimatePresence>

@@ -73,7 +73,14 @@ export const linkRouter = router({
                 nextCursor = nextLink!.id;
             }
 
+            const allCount = await prisma.link.count({
+                where: {
+                    postedById: ctx.session.user.id,
+                },
+            });
+
             return {
+                allCount,
                 links,
                 nextCursor,
             };

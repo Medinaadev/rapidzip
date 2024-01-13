@@ -31,8 +31,7 @@ const Links = () => {
             getNextPageParam: (lastPage) => lastPage.nextCursor,
         }
     );
-    const { data: linksCount, isLoading: isCountLoading } =
-        trpc.links.countLinksByUser.useQuery();
+    const linksCount = data?.pages[0].allCount;
 
     const handleCopy = (alias: string) => {
         navigator.clipboard.writeText(`${window.location.origin}/q/${alias}`);
@@ -42,6 +41,10 @@ const Links = () => {
     const handleSearch = useDebounceCallback((term: string) => {
         setFilter(term);
     }, 300);
+
+    const refrechAll = () => {
+        refetch();
+    };
 
     return (
         <section className="flex flex-col mt-2">
@@ -89,7 +92,7 @@ const Links = () => {
                 <span className="text-sm text-white/60 mt-1 flex gap-x-2 items-center font-semibold">
                     <span className="text-green-500">Active Links</span>•
                     <span className="text-gray-400">
-                        {isCountLoading ? "?" : linksCount}
+                        {isLoading ? "?" : linksCount}
                     </span>
                 </span>
             </Up>
@@ -116,7 +119,7 @@ const Links = () => {
                         </p>
                     ) : linksCount === 0 ? (
                         <p className="text-lg text-white/60">
-                            You don't have any links yet
+                            You don&apos;t have any links yet
                         </p>
                     ) : (
                         data.pages.map((page) => {
@@ -142,7 +145,7 @@ const Links = () => {
                                             </span>
                                         </button>
                                         <LinkDropdown
-                                            refetch={refetch}
+                                            refetch={refrechAll}
                                             link={link}
                                             copy={() => handleCopy(link.alias)}
                                         >

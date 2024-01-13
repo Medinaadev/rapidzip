@@ -66,7 +66,7 @@ export const CreatedLinkModal = () => {
             window.removeEventListener("keydown", handleKeydown);
             window.removeEventListener("mousedown", handleClick);
         };
-    }, []);
+    }, [close]);
 
     const copy = () => {
         navigator.clipboard.writeText(link);

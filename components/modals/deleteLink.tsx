@@ -16,7 +16,7 @@ const context = createContext({
     isOpen: false,
     link: {} as Link,
     // onClose tiene que devolver un boolean
-    open: (link: Link, onClose: (success?: boolean) => void) => {},
+    open: (link: Link, onClose: (success?: any) => void) => {},
     close: (isSuccess?: boolean) => {},
 });
 
@@ -31,7 +31,7 @@ export const DeleteLinkModalProvider = ({
     const [link, setLink] = useState<Link>({} as Link);
     const ref = useRef<(success?: boolean) => void>(() => {});
 
-    const open = (link: Link, onClose: () => boolean) => {
+    const open = (link: Link, onClose: (success?: any) => void) => {
         setIsOpen(true);
         setLink(link);
         ref.current = onClose;
@@ -83,7 +83,7 @@ export const DeleteLinkModal = () => {
         if (!isOpen) {
             setValue("confirm", "");
         }
-    }, [isOpen]);
+    }, [isOpen, setValue]);
 
     useEffect(() => {
         const handleKeydown = (e: KeyboardEvent) => {
@@ -105,7 +105,7 @@ export const DeleteLinkModal = () => {
             window.removeEventListener("keydown", handleKeydown);
             window.removeEventListener("mousedown", handleClick);
         };
-    }, []);
+    }, [close]);
 
     const onSubmit = (data: FormValues) => {
         const toastId = toast.loading("Deleting link...");
@@ -143,11 +143,6 @@ export const DeleteLinkModal = () => {
                             required: {
                                 value: true,
                                 message: "Please enter the alias to confirm",
-                            },
-                            minLength: {
-                                value: confirm.length,
-                                message:
-                                    "Please enter the correct alias to confirm",
                             },
                             pattern: {
                                 // tiene que empezar con https:// aqui tiene que haber algo y luego un punto y luego algo

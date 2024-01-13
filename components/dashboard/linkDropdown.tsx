@@ -62,7 +62,7 @@ const LinkDropdown = ({
                 </DropdownItem>
                 <DropdownItem
                     onPress={() =>
-                        editModalOpen(link as Link, (success?: boolean) => {
+                        editModalOpen(link as Link, (success) => {
                             if (success) {
                                 refetch();
                             }
@@ -77,7 +77,7 @@ const LinkDropdown = ({
                 </DropdownItem>
                 <DropdownItem
                     onPress={() => {
-                        deleteModalOpen(link as Link, (success?: boolean) => {
+                        deleteModalOpen(link as Link, (success) => {
                             if (success) {
                                 refetch();
                             }

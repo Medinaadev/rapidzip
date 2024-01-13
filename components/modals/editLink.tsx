@@ -14,7 +14,7 @@ const context = createContext({
     isOpen: false,
     link: {} as Link,
     // onClose tiene que devolver un boolean
-    open: (link: Link, onClose: (success?: boolean) => void) => {},
+    open: (link: Link, onClose: (success?: any) => void) => {},
     close: (isSuccess?: boolean) => {},
 });
 
@@ -27,9 +27,9 @@ export const EditLinkModalProvider = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [link, setLink] = useState<Link>({} as Link);
-    const ref = useRef<(success?: boolean) => void>(() => {});
+    const ref = useRef<(success?: any) => void>(() => {});
 
-    const open = (link: Link, onClose: () => boolean) => {
+    const open = (link: Link, onClose: (success?: any) => void) => {
         setIsOpen(true);
         setLink(link);
         ref.current = onClose;
@@ -97,7 +97,7 @@ export const EditLinkModal = () => {
             setValue("url", "");
             setValue("description", "");
         }
-    }, [isOpen]);
+    }, [isOpen, link, setValue]);
 
     return (
         <Modal isOpen={isOpen}>
