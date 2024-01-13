@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+    Rapidzip
+</h1>
 
-## Getting Started
+<p align="center">
+    <strong>RapidZip</strong> is a user-friendly web application designed to simplify the process of shortening URLs.</br>
+    <strong>
+        <a href="https://rapidzip.xyz">Application Live 🔮</a>
+    </strong>
+</p>
 
-First, run the development server:
+## 🤯 About Rapidzip
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<img src="https://cdn.discordapp.com/attachments/620697449727787058/1195721162072801300/image.png" alt="rapidzip landing" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<strong>RapidZip</strong> is a web application designed to simplify the process of shortening URLs, making them easier to share. It provides a seamless experience for generating shortened links and offers analytics to track click statistics.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+</p>
 
-## Learn More
+## 🤗 Contribution
 
-To learn more about Next.js, take a look at the following resources:
+We are open to any contributions!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   If you like the project, <strong>star this repository </strong> ⭐
+    </br> </br>
+    <a href="https://github.com/Medinaadev/rapidzip/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=Medinaadev/rapidzip" />
+    </a>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## ✍️ Useful commands
 
-## Deploy on Vercel
+-   `npm install` - install project
+-   `npm run dev` - run project locally
+-   `npm run test` - run all tests
+-   `npm run lint` - check code lints
+-   `npm run lint-fix` - try to solve lints errors automatically
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚒️ Technologies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   💙 [Typescript](https://www.typescriptlang.org/)
+-   🚀 [Next.js](https://nextjs.org/)
+-   ⚛️ [React](https://reactjs.org/)
+-   🎨 [TailwindCSS](https://tailwindcss.com)
+-   🪢 [Prisma](https://prisma.io/)
+-   🔒 [NextAuth.js](https://next-auth.js.org/)
+-   🪡 [tRPC](https://trpc.io/)

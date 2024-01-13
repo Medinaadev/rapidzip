@@ -1,6 +1,7 @@
 "use client";
 import cn from "@/lib/cn";
 import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Button = ({
     children,
@@ -8,16 +9,14 @@ const Button = ({
     className,
     href,
     target,
-    type = "button",
-    disabled,
+    ...props
 }: {
     children: React.ReactNode;
     onClick?: () => void;
     className?: string;
     href?: string;
     target?: string;
-    type?: "button" | "submit" | "reset";
-    disabled?: boolean;
+    [key: string]: any;
 }) => {
     const router = useRouter();
 
@@ -30,17 +29,19 @@ const Button = ({
     };
 
     return (
-        <button
-            className={cn(
-                "flex items-center gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300",
-                className
-            )}
-            onClick={handleClick}
-            type={type}
-            disabled={disabled}
-        >
-            {children}
-        </button>
+        <AnimatePresence>
+            <motion.button
+                layout
+                className={cn(
+                    "flex items-center gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300",
+                    className
+                )}
+                onClick={handleClick}
+                {...props}
+            >
+                {children}
+            </motion.button>
+        </AnimatePresence>
     );
 };
 
