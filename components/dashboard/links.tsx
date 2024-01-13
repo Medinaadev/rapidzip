@@ -39,6 +39,7 @@ const Links = () => {
     };
 
     const handleSearch = useDebounceCallback((term: string) => {
+        if (linksCount === 0) return;
         setFilter(term);
     }, 300);
 
