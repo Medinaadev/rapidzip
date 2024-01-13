@@ -24,6 +24,7 @@
 We are open to any contributions!
 
 -   If you like the project, <strong>star this repository </strong> ⭐
+-   If you are interested in contributing you can read [Contributing Guide](https://github.com/Medinaadev/rapizip/CONTRIBUTING.md)
     </br> </br>
     <a href="https://github.com/Medinaadev/rapidzip/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=Medinaadev/rapidzip" />
