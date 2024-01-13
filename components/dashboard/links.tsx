@@ -117,10 +117,6 @@ const Links = () => {
                         <p className="text-lg text-white/60">
                             An error occurred while fetching your links
                         </p>
-                    ) : linksCount === 0 ? (
-                        <p className="text-lg text-white/60">
-                            You don&apos;t have any links yet
-                        </p>
                     ) : (
                         data.pages.map((page) => {
                             return page.links.map((link) => (
@@ -175,6 +171,19 @@ const Links = () => {
                         })
                     )}
                 </motion.div>
+
+                {linksCount === 0 && (
+                    <p className="flex flex-col items-center text-lg text-white/60 mt-10 md:mt-20">
+                        😒 You don&apos;t have any links yet
+                        <Button
+                            href="/dashboard/create"
+                            className="sticky top-0 right-0 mt-5"
+                        >
+                            <LinkIcon className="w-4 h-4" />
+                            Create your first link
+                        </Button>
+                    </p>
+                )}
 
                 {hasNextPage && (
                     <Button
