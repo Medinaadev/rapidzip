@@ -1,6 +1,6 @@
 # 🤗 Contributing to Rapidzip
 
-Contributing to Rapidzip is fairly easy. This document will guide you through the process.
+Contributing to <strong>Rapidzip</strong> is easy. This document will guide you through the process.
 
 ## Local Development
 
