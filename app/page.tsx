@@ -10,7 +10,7 @@ export default function Home() {
     const { data: session } = useSession();
 
     return (
-        <main className="flex md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
+        <main className="flex mx-20 bg-white md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
             <Up>
                 <h1 className="text-2xl md:text-4xl font-semibold text-center text-balance">
                     Instantly Shorten Links and Share with Ease!

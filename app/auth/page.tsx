@@ -9,7 +9,7 @@ const AuthPage = async () => {
 
     if (!session) {
         return (
-            <main className="flex md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
+            <main className="flex mx-20 md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
                 <Up>
                     <h1 className="text-2xl md:text-4xl font-semibold text-center text-balance">
                         Transform the world with your links! Begin redirecting.
