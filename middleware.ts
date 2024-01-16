@@ -11,11 +11,9 @@ export async function middleware(req: NextRequest) {
 
     const link = await data.json();
 
-    return NextResponse.redirect(link.url);
+    return NextResponse.redirect(new URL(link.url));
 }
 
 export const config = {
-    matcher: [
-        '/q/:alias*',
-    ]
+    matcher: ["/q/:alias*"],
 };
