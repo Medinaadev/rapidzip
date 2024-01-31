@@ -5,12 +5,14 @@ import Link from "next/link";
 import Up from "@/components/motions/Up";
 import { useSession } from "next-auth/react";
 import Button from "@/components/ui/button";
+import Meteors from "@/components/ui/meteors";
 
 export default function Home() {
     const { data: session } = useSession();
 
     return (
         <main className="flex mx-20 md:mx-56 lg:mx-96 flex-col items-center mt-8 md:mt-24">
+            <Meteors />
             <Up>
                 <h1 className="text-2xl md:text-4xl font-semibold text-center text-balance">
                     Instantly Shorten Links and Share with Ease!

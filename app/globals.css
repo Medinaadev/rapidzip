@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 0.35vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+}
+
 header {
     animation: scroll both;
     animation-timeline: scroll();
