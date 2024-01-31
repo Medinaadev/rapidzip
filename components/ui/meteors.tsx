@@ -31,7 +31,7 @@ const Meteor = () => {
     }, [meteors]);
 
     return (
-        <div className="absolute top-0 w-screen h-screen overflow-hidden">
+        <div className="absolute -z-10 top-0 w-screen h-screen overflow-hidden">
             {meteorMemo}
         </div>
     );
