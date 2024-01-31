@@ -130,17 +130,24 @@ const Links = () => {
                                     }}
                                 >
                                     <div className="flex justify-between items-center">
-                                        <button
-                                            onClick={() =>
-                                                handleCopy(link.alias)
-                                            }
-                                            className="flex items-center gap-x-2 text-sm font-semibold hover:underline"
-                                        >
-                                            <LinkIcon className="w-4 h-4 text-gray-400" />
-                                            <span className="truncate">
-                                                {link.alias}
+                                        <div className="flex items-center gap-x-2">
+                                            <button
+                                                onClick={() =>
+                                                    handleCopy(link.alias)
+                                                }
+                                                className="flex items-center gap-x-2 text-sm font-semibold hover:underline"
+                                            >
+                                                <LinkIcon className="w-4 h-4 text-gray-400" />
+                                                <span className="truncate">
+                                                    {link.alias}
+                                                </span>
+                                            </button>
+                                            <span className="text-xs text-gray-400">
+                                                {new Date(
+                                                    link.createdAt
+                                                ).toLocaleDateString()}
                                             </span>
-                                        </button>
+                                        </div>
                                         <LinkDropdown
                                             refetch={refrechAll}
                                             link={link}
