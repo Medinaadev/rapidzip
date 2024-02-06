@@ -9,6 +9,7 @@ const Button = ({
     className,
     href,
     target,
+    type = "button",
     ...props
 }: {
     children: React.ReactNode;
@@ -16,6 +17,7 @@ const Button = ({
     className?: string;
     href?: string;
     target?: string;
+    type?: "button" | "submit" | "reset";
     [key: string]: any;
 }) => {
     const router = useRouter();
@@ -37,6 +39,7 @@ const Button = ({
                     className
                 )}
                 onClick={handleClick}
+                type={type}
                 {...props}
             >
                 {children}
