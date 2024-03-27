@@ -7,11 +7,13 @@ import { EditLinkModalProvider } from "@/components/modals/editLink";
 import { CreatedLinkModalProvider } from "@/components/modals/createdLink";
 import { DeleteLinkModalProvider } from "@/components/modals/deleteLink";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Analytics />
+            <SpeedInsights />
 
             <SessionProvider>
                 <TrpcProvider>
