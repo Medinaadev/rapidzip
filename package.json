@@ -17,7 +17,6 @@
     "@trpc/client": "^10.45.0",
     "@trpc/react-query": "^10.45.0",
     "@trpc/server": "^10.45.0",
-    "@vercel/analytics": "^1.2.2",
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
