@@ -96,7 +96,7 @@ const CreateLinkForm = () => {
                                     "Please enter a valid link, e.g. https://google.com",
                             },
                             pattern: {
-                                value: /^https?:\/\/.*/i,
+                                value: /^https?:\/\/\S*$/i,
                                 message:
                                     "Please enter a valid link, e.g. https://google.com",
                             },
