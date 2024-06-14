@@ -31,20 +31,17 @@ const Button = ({
     };
 
     return (
-        <AnimatePresence>
-            <motion.button
-                layout
-                className={cn(
-                    "flex items-center gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300",
-                    className
-                )}
-                onClick={handleClick}
-                type={type}
-                {...props}
-            >
-                {children}
-            </motion.button>
-        </AnimatePresence>
+        <button
+            className={cn(
+                "flex items-center gap-x-2 px-2 py-1.5 bg-gray-800/30 hover:bg-gray-800/60 border-[1px] border-white/10 text-sm shadow-xl rounded-lg text-gray-300 hover:text-white transition duration-300",
+                className
+            )}
+            onClick={handleClick}
+            type={type}
+            {...props}
+        >
+            {children}
+        </button>
     );
 };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
+import { Manrope, Onest, Outfit, Urbanist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/index";
 import Footer from "@/components/footer/index";
