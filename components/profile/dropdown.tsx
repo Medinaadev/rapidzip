@@ -10,7 +10,7 @@ import SignoutIcon from "../icons/signout";
 import DashboardIcon from "../icons/dashboard";
 import WarnIcon from "@/components/icons/warn";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import LinkIcon from "@/components/icons/link";
 
 const ProfileDropdown = ({ children }: { children: React.ReactNode }) => {

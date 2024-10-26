@@ -8,7 +8,7 @@ import {
 } from "@nextui-org/react";
 import SignoutIcon from "../icons/signout";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import LinkIcon from "@/components/icons/link";
 import EditIcon from "@/components/icons/edit";
 import DeleteIcon from "@/components/icons/delete";

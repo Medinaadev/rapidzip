@@ -1,6 +1,6 @@
 "use client";
 import cn from "@/lib/cn";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Button = ({

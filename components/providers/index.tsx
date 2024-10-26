@@ -8,10 +8,12 @@ import { CreatedLinkModalProvider } from "@/components/modals/createdLink";
 import { DeleteLinkModalProvider } from "@/components/modals/deleteLink";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import NextTopLoader from "nextjs-toploader";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
+            <NextTopLoader color="#0da0d1" />
             <Analytics />
             <SpeedInsights />
 

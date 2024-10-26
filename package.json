@@ -22,6 +22,8 @@
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "nextjs-progressbar": "^0.0.16",
+    "nextjs-toploader": "^3.7.15",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
