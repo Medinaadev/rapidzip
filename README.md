@@ -11,7 +11,7 @@
 
 ## 🤯 About Rapidzip
 
-<img src="https://cdn.discordapp.com/attachments/620697449727787058/1195721162072801300/image.png" alt="rapidzip landing" />
+<img src="public/preview_rapidzip.png" alt="rapidzip landing" />
 
 <p>
 
@@ -47,5 +47,6 @@ We are open to any contributions!
 -   🪢 [Prisma](https://prisma.io/)
 -   🔒 [NextAuth.js](https://next-auth.js.org/)
 -   🪡 [tRPC](https://trpc.io/)
+
 
 
