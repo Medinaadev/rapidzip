@@ -5,7 +5,7 @@
 <p align="center">
     <strong>RapidZip</strong> is a user-friendly web application designed to simplify the process of shortening URLs.</br>
     <strong>
-        <a href="https://rapidzip.vercel.app">Application Live 🔮</a>
+        <a href="https://rapidzip.vercel.app" target="_blank">Application Live 🔮</a>
     </strong>
 </p>
 
@@ -47,4 +47,5 @@ We are open to any contributions!
 -   🪢 [Prisma](https://prisma.io/)
 -   🔒 [NextAuth.js](https://next-auth.js.org/)
 -   🪡 [tRPC](https://trpc.io/)
+
 
